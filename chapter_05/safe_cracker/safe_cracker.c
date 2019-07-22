@@ -5,13 +5,13 @@ typedef struct {
     float value;
 } swag;
 
-typedef struct combo {
+struct combo {
     swag* swag;
     const char* sequence;
-} combination;
+};
 
 typedef struct {
-    combination numbers;
+    struct combo numbers;
     const char* make;
 } safe;
 
