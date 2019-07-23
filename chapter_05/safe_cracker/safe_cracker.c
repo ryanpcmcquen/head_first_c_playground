@@ -1,31 +1,31 @@
 #include <stdio.h>
 
-typedef struct {
+struct swag {
     const char* description;
     float value;
 } swag;
 
 struct combo {
-    swag* swag;
+    struct swag* swag;
     const char* sequence;
 };
 
-typedef struct {
+struct safe {
     struct combo numbers;
     const char* make;
-} safe;
+};
 
-swag gold = {
+struct swag gold = {
     "GOLD!",
     1000000.0
 };
 
-struct combo const numbers = {
+struct combo numbers = {
     &gold,
     "6502"
 };
 
-safe s = {
+struct safe s = {
     numbers,
     "RAMACON250"
 };
@@ -33,6 +33,6 @@ safe s = {
 int main()
 {
     printf("Contents = %s\n", s.numbers.swag->description);
-    printf("%s\n", s.numbers->swag->description);
+    //printf("%s\n", s.numbers->swag->description);
     // printf("%s\n", s->numbers->swag->description);
 }
