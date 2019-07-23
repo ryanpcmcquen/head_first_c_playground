@@ -1,0 +1,61 @@
+#include <stdio.h>
+
+struct swag {
+    const char* description;
+    float value;
+} swag;
+
+<<<<<<< HEAD
+struct combo {
+    struct swag* swag;
+=======
+typedef struct {
+    swag* swag;
+>>>>>>> Fix numbers pointer. Thanks Danny.
+    const char* sequence;
+} combination;
+
+<<<<<<< HEAD
+struct safe {
+    struct combo numbers;
+=======
+typedef struct {
+    combination* numbers;
+>>>>>>> Fix numbers pointer. Thanks Danny.
+    const char* make;
+};
+
+struct swag gold = {
+    "GOLD!",
+    1000000.00
+};
+
+<<<<<<< HEAD
+struct combo numbers = {
+=======
+combination numbers = {
+>>>>>>> Fix numbers pointer. Thanks Danny.
+    &gold,
+    "6502"
+};
+
+<<<<<<< HEAD
+struct safe s = {
+    numbers,
+=======
+safe s = {
+    &numbers,
+>>>>>>> Fix numbers pointer. Thanks Danny.
+    "RAMACON250"
+};
+
+int main()
+{
+<<<<<<< HEAD
+    printf("Contents = %s\n", s.numbers.swag->description);
+    //printf("%s\n", s.numbers->swag->description);
+    // printf("%s\n", s->numbers->swag->description);
+=======
+    printf("Contents = %s\n", s.numbers->swag->description);
+>>>>>>> Fix numbers pointer. Thanks Danny.
+}

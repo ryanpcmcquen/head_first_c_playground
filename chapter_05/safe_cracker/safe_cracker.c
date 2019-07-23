@@ -5,34 +5,32 @@ struct swag {
     float value;
 } swag;
 
-struct combo {
-    struct swag* swag;
+typedef struct {
+    swag* swag;
     const char* sequence;
-};
+} combination;
 
-struct safe {
-    struct combo numbers;
+typedef struct {
+    combination* numbers;
     const char* make;
 };
 
 struct swag gold = {
     "GOLD!",
-    1000000.0
+    1000000.00
 };
 
-struct combo numbers = {
+combination numbers = {
     &gold,
     "6502"
 };
 
-struct safe s = {
-    numbers,
+safe s = {
+    &numbers,
     "RAMACON250"
 };
 
 int main()
 {
-    printf("Contents = %s\n", s.numbers.swag->description);
-    //printf("%s\n", s.numbers->swag->description);
-    // printf("%s\n", s->numbers->swag->description);
+    printf("Contents = %s\n", s.numbers->swag->description);
 }
