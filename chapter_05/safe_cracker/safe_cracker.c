@@ -1,19 +1,19 @@
 #include <stdio.h>
 
-struct swag {
+typedef struct swag {
     const char* description;
     float value;
 } swag;
 
-typedef struct {
+typedef struct combination {
     swag* swag;
     const char* sequence;
 } combination;
 
-typedef struct {
+typedef struct safe {
     combination* numbers;
     const char* make;
-};
+} safe;
 
 struct swag gold = {
     "GOLD!",
