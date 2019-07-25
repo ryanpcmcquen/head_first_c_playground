@@ -53,4 +53,10 @@ int main()
         .amount.volume = 10.5,
         PINTS
     };
+
+    display(apples);
+    display(strawberries);
+    display(oj);
+
+    return 0;
 }
