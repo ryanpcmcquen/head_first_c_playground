@@ -1,2 +1,2 @@
 cards: cards.c
-	$(CC) cards.c -o cards -Wall -Wextra -pedantic -std=c99
+	$(CC) cards.c -Wall -std=c99

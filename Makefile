@@ -1,2 +1,2 @@
 foobar: foobar.c
-	$(CC) foobar.c -Wall -Wextra -pedantic -std=c99
+	$(CC) foobar.c -Wall -std=c99

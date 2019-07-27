@@ -1,2 +1,2 @@
 jukebox: jukebox.c
-	$(CC) jukebox.c -o jukebox -Wall -Wextra -pedantic -std=c99
+	$(CC) jukebox.c -Wall -std=c99
