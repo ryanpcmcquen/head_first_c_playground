@@ -1,2 +1,2 @@
-spies: spies.c
-	$(CC) spies.c -Wall -std=c99
+foo: foo.c
+	$(CC) foo.c -Wall -std=c99
