@@ -39,7 +39,11 @@ int main()
     };
     int i;
     for (i = 0; i < 4; i++) {
-        (replies[r[i].type])(r[i]);
+        // This is the syntax the book recommends:
+        // (replies[r[i].type])(r[i]);
+        // But this syntax is perfectly valid,
+        // and more readable to my eye:
+        replies[r[i].type](r[i]);
     }
     return 0;
 }

@@ -19,7 +19,7 @@ int yes_no(char* question)
 node* create(char* question)
 {
     node* n = malloc(sizeof(node));
-    n->question = strdup(question);
+    n->question = _strdup(question);
     n->no = NULL;
     n->yes = NULL;
     return n;
@@ -81,7 +81,7 @@ int main()
 
                 fgets(question, 80, stdin);
                 free(current->question);
-                current->question = strdup(question);
+                current->question = _strdup(question);
 
                 break;
             }

@@ -19,7 +19,7 @@ int yes_no(char* question)
 node* create(char* question)
 {
     node* n = malloc(sizeof(node));
-    n->question = strdup(question);
+    n->question = _strdup(question);
     n->no = NULL;
     n->yes = NULL;
     return n;
@@ -80,7 +80,7 @@ int main()
                 printf("Give me a question that is TRUE for %s but not for %s? ", suspect, current->question);
 
                 fgets(question, 80, stdin);
-                current->question = strdup(question);
+                current->question = _strdup(question);
 
                 break;
             }
