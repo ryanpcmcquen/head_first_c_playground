@@ -3,7 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef _UNISTD_H
 #include <unistd.h>
+#else
+#include <io.h>
+#endif
 
 void error(char* msg)
 {
