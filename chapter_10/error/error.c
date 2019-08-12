@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifdef _UNISTD_H
+
+#ifdef __unix__
 #include <unistd.h>
 #else
 #include <io.h>
