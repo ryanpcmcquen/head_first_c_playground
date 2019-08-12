@@ -1,14 +1,14 @@
+#define _POSIX_SOURCE
 #include "../error/error.h"
 #include <stdio.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 
-#ifdef _UNISTD_H
+#ifdef __unix__
 #include <unistd.h>
 #else
 #include <io.h>
 #endif
-
-#define _POSIX_SOURCE
 
 int main(int argc, char* argv[])
 {
@@ -34,5 +34,13 @@ int main(int argc, char* argv[])
             error("Can't run script.");
         }
     }
+    int pid_status;
+    if (waitpid(pid, &pid_status, 0) == -1) {
+        error("Error waiting for child process.");
+    }
+    if (WEXITSTATUS(pid_status)) {
+        puts("Error status non-zero.");
+    }
+
     return 0;
 }
