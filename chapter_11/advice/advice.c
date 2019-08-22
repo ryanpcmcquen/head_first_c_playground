@@ -1,3 +1,4 @@
+#include "../../error/error.h"
 #include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,6 +8,7 @@
 
 int main(int argc, char* argv[])
 {
+
     char* advice[] = {
         "Take smaller bites\r\n",
         "Go for the tight jeans. No they do NOT make you look fat.\r\n",
@@ -21,6 +23,10 @@ int main(int argc, char* argv[])
     name.sin_port = (in_port_t)htons(30000);
     name.sin_addr.s_addr = htonl(INADDR_ANY);
 
+    int reuse = 1;
+    if (setsockopt(listener_d, SOL_SOCKET, SO_REUSEADDR, (char*)&reuse, sizeof(int)) == -1) {
+        error("Can't set the reuse option on the socket.");
+    }
     bind(listener_d, (struct sockaddr*)&name, sizeof(name));
     listen(listener_d, 10);
 
