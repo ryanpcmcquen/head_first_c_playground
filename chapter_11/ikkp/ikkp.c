@@ -21,6 +21,8 @@ void bind_to_port(int socket, int port)
     struct sockaddr_in name;
     name.sin_family = PF_INET;
     name.sin_port = (in_port_t)htons(30000);
+    name.sin_addr.s_addr = htonl(INADDR_ANY);
+    int reuse = 1;
 }
 
 int read_in(int socket, char* buf, int len)
