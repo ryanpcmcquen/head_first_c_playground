@@ -1,4 +1,11 @@
-
+#include <arpa/inet.h>
+#include <errno.h>
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <unistd.h>
 
 void error(char* msg)
 {
@@ -23,6 +30,23 @@ void bind_to_port(int socket, int port)
     name.sin_port = (in_port_t)htons(30000);
     name.sin_addr.s_addr = htonl(INADDR_ANY);
     int reuse = 1;
+
+    if (setsockopt(socket, SOL_SOCKET, SO_REUSEADDR, (char*)&reuse, sizeof(int)) == -1) {
+        error("Can't set the reuse option on the socket.");
+    }
+    int c = bind(socket, (struct sockaddr*)&name, sizeof(name));
+    if (c == -1) {
+        error("Can't bind to socket.");
+    }
+}
+
+int say(int socket, char* s)
+{
+    int result = send(socket, s, strlen(s), 0);
+    if (result == -1) {
+        fprintf(stderr, "%s: %s\n", "Error talking to the client", strerror(errno));
+    }
+    return result;
 }
 
 int read_in(int socket, char* buf, int len)
@@ -43,4 +67,24 @@ int read_in(int socket, char* buf, int len)
         s[c - 1] = '\0';
     }
     return len - slen;
+}
+
+int listener_d;
+
+void handle_shutdown(int sig)
+{
+    if (listener_d) {
+        close(listener_d);
+    }
+
+    fprintf(stderr, "Bye!\n", );
+    exit(0);
+}
+
+int main()
+{
+
+    sock = open_listener_socket();
+    say("Knock, knock!");
+    read_in(sock, fgets(stdin, 80), 80);
 }
