@@ -1,10 +1,16 @@
-#ifdef __unix__
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <unistd.h>
-#else
+#ifdef _WIN64
+
 #include <io.h>
 #include <winsock2.h>
+#define strncasecmp(x, y, z) _strnicmp(x, y, z)
+
+#else
+
+#include <arpa/inet.h>
+#include <strings.h>
+#include <sys/socket.h>
+#include <unistd.h>
+
 #endif
 
 #define _POSIX_SOURCE
@@ -14,10 +20,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-// #include <strings.h>
-// ^^ That is replaced by this:
-#define strncasecmp(x, y, z) _strnicmp(x, y, z)
 
 int catch_signal(int sig, void (*handler)(int))
 {
