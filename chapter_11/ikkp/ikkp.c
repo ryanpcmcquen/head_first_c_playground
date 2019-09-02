@@ -1,14 +1,23 @@
+#ifdef __unix__
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <unistd.h>
+#else
+#include <io.h>
+#include <winsock2.h>
+#endif
+
 #define _POSIX_SOURCE
 
-#include <arpa/inet.h>
 #include <errno.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <strings.h>
-#include <sys/socket.h>
-#include <unistd.h>
+
+// #include <strings.h>
+// ^^ That is replaced by this:
+#define strncasecmp(x, y, z) _strnicmp(x, y, z)
 
 int catch_signal(int sig, void (*handler)(int))
 {
@@ -113,24 +122,33 @@ int main(int argc, char* argv[])
         if (connect_d == -1) {
             error("Can't open secondary socket.");
         }
-        if (
-            say(
-                connect_d,
-                "Internet Knock-Knock Protocol Server\r\nVersion 1.0\r\nKnock! Knock!\r\n> ")
-            != -1) {
-            read_in(connect_d, buf, sizeof(buf));
-            if (strncasecmp("Who's there?", buf, 12)) {
-                say(connect_d, "You should say 'Who's there?'!");
-            } else {
-                if (say(connect_d, "Oscar\r\n> ") != -1) {
-                    read_in(connect_d, buf, sizeof(buf));
-                    if (strncasecmp("Oscar who?", buf, 10)) {
-                        say(connect_d, "You should say 'Oscar who?'!\r\n");
-                    } else {
-                        say(connect_d, "Oscar silly question, you get a silly answer.\r\n");
+
+        if (!fork()) {
+            close(listener_d);
+            if (
+                say(
+                    connect_d,
+                    "Internet Knock-Knock Protocol Server\r\nVersion 1.0\r\nKnock! Knock!\r\n> ")
+                != -1) {
+                read_in(connect_d, buf, sizeof(buf));
+
+                if (strncasecmp("Who's there?", buf, 12)) {
+                    say(connect_d, "You should say 'Who's there?'!");
+                } else {
+                    if (say(connect_d, "Oscar\r\n> ") != -1) {
+                        read_in(connect_d, buf, sizeof(buf));
+
+                        if (strncasecmp("Oscar who?", buf, 10)) {
+                            say(connect_d, "You should say 'Oscar who?'!\r\n");
+                        } else {
+                            say(connect_d, "Oscar silly question, you get a silly answer.\r\n");
+                        }
                     }
                 }
             }
+
+            close(connect_d);
+            exit(0);
         }
         close(connect_d);
     }
