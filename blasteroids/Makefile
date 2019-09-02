@@ -1,2 +1,2 @@
-foo: foo.c
-	$(CC) foo.c -Wall -std=c99
+blasteroids: blasteroids.c
+	$(CC) blasteroids.c -Wall -std=c99
