@@ -150,6 +150,7 @@ int main(int argc, char* argv[])
             close(connect_d);
             exit(0);
         }
+
         close(connect_d);
     }
     return 0;
