@@ -23,4 +23,15 @@ void ship_controls(Spaceship* s)
     queue = al_create_event_queue();
     ALLEGRO_EVENT event;
     al_wait_for_event(queue, &event);
+
+    if (event.type == ALLEGRO_EVENT_KEY_DOWN) {
+        switch (event.keyboard.keycode) {
+        case ALLEGRO_KEY_LEFT:
+            break;
+        case ALLEGRO_KEY_RIGHT:
+            break;
+        case ALLEGRO_KEY_SPACE:
+            break;
+        }
+    }
 }
