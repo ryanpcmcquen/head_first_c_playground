@@ -1,4 +1,4 @@
-#include "allegro-5.2.5.0/include/allegro5/allegro.h"
+#include "include/SDL.h"
 
 typedef struct Spaceship {
     float sx;

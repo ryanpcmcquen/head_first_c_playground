@@ -1,4 +1,4 @@
-#include "allegro-5.2.5.0/include/allegro5/allegro.h"
+#include "include/SDL.h"
 
 typedef struct Asteroid {
     float sx;
@@ -9,7 +9,7 @@ typedef struct Asteroid {
     float rot_velocity;
     float scale;
     int gone;
-    ALLEGRO_COLOR color;
+    SDL_Color color;
 } Asteroid;
 
 void draw_asteroid(Asteroid* a)
