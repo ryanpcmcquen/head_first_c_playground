@@ -1,4 +1,4 @@
-#include "include/SDL.h"
+#include <SDL2/SDL.h>
 
 typedef struct Asteroid {
     float sx;
