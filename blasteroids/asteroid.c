@@ -1,3 +1,4 @@
+#include "renderer.c"
 #include <SDL2/SDL.h>
 
 typedef struct Asteroid {
@@ -12,26 +13,28 @@ typedef struct Asteroid {
     SDL_Color color;
 } Asteroid;
 
-void draw_asteroid(Asteroid* a)
+void draw_asteroid()
 {
-    ALLEGRO_TRANSFORM transform;
-    al_identity_transform(&transform);
-    al_rotate_transform(&transform, DEGREES(a->heading));
-    al_translate_transform(&transform, a->sx, a->sy);
-    al_use_transform(&transform);
+    // Asteroid a;
+    SDL_Renderer* rndr = rend();
+    // ALLEGRO_TRANSFORM transform;
+    // al_identity_transform(&transform);
+    // al_rotate_transform(&transform, DEGREES(a->heading));
+    // al_translate_transform(&transform, a->sx, a->sy);
+    // al_use_transform(&transform);
 
-    al_draw_line(-20, 20, -25, 5, a->color, 2.0f);
-    al_draw_line(-25, 5, -25, -10, a->color, 2.0f);
-    al_draw_line(-25, -10, -5, -10, a->color, 2.0f);
-    al_draw_line(-5, -10, -10, -20, a->color, 2.0f);
+    SDL_RenderDrawLine(rndr, -20, 20, -25, 5);
+    SDL_RenderDrawLine(rndr, -25, 5, -25, -10);
+    SDL_RenderDrawLine(rndr, -25, -10, -5, -10);
+    SDL_RenderDrawLine(rndr, -5, -10, -10, -20);
 
-    al_draw_line(-10, -20, 5, -20, a->color, 2.0f);
-    al_draw_line(5, -20, 20, -10, a->color, 2.0f);
-    al_draw_line(20, -10, 20, -5, a->color, 2.0f);
-    al_draw_line(20, -5, 0, 0, a->color, 2.0f);
+    SDL_RenderDrawLine(rndr, -10, -20, 5, -20);
+    SDL_RenderDrawLine(rndr, 5, -20, 20, -10);
+    SDL_RenderDrawLine(rndr, 20, -10, 20, -5);
+    SDL_RenderDrawLine(rndr, 20, -5, 0, 0);
 
-    al_draw_line(0, 0, 20, 10, a->color, 2.0f);
-    al_draw_line(20, 10, 10, 20, a->color, 2.0f);
-    al_draw_line(10, 20, 0, 15, a->color, 2.0f);
-    al_draw_line(0, 15, -20, 20, a->color, 2.0f);
+    SDL_RenderDrawLine(rndr, 0, 0, 20, 10);
+    SDL_RenderDrawLine(rndr, 20, 10, 10, 20);
+    SDL_RenderDrawLine(rndr, 10, 20, 0, 15);
+    SDL_RenderDrawLine(rndr, 0, 15, -20, 20);
 }
