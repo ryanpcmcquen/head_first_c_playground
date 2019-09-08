@@ -40,4 +40,5 @@ void draw_asteroid(SDL_Renderer** rndr)
     SDL_RenderDrawLine(*rndr, 20, 10, 10, 20);
     SDL_RenderDrawLine(*rndr, 10, 20, 0, 15);
     SDL_RenderDrawLine(*rndr, 0, 15, -20, 20);
+    SDL_RenderPresent(*rndr);
 }
