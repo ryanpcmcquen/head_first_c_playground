@@ -84,5 +84,5 @@ void draw_asteroid(SDL_Renderer** renderer, SDL_Event* event, int x, int y)
         (SCREEN_HEIGHT / 2) + 20 - y);
 
     SDL_RenderPresent(*renderer);
-    printf("SDL error: %s\n", SDL_GetError());
+    // printf("SDL error: %s\n", SDL_GetError());
 }

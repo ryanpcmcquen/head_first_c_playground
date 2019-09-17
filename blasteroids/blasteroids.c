@@ -45,14 +45,15 @@ int main(int argc, char* argv[])
                         }
                     }
                 }
-
-                if (renderer) {
-                    SDL_DestroyRenderer(renderer);
-                }
-                if (window) {
-                    SDL_DestroyWindow(window);
-                }
             }
+
+            if (renderer) {
+                SDL_DestroyRenderer(renderer);
+            }
+            if (window) {
+                SDL_DestroyWindow(window);
+            }
+
             SDL_Quit();
         }
     }
